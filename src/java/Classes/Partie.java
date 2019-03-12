@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.Random;
+
 /**
  *
  * @author tvathonn
@@ -12,6 +14,15 @@ public class Partie {
     public Partie() {
         nbrCoups = 0;
         sommetCourant = Sommets.A;
+    }
+    
+    public void Jouer() {
+        
+        Random r = new Random();
+        int lanceDe = r.nextInt(6);
+        
+        
+        
     }
     
     public int getNbrCoups() {
