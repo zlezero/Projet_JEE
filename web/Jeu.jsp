@@ -22,7 +22,7 @@
         try {
             if (Integer.valueOf(request.getParameter("nbrParties")) >= 5 && Integer.valueOf(request.getParameter("nbrParties")) <= 10) {   
                 
-                Joueur joueur = new Joueur(0);
+                Joueur joueur = new Joueur(0, 10);
                 
                 
                 

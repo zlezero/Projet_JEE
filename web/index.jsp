@@ -49,7 +49,7 @@
                         if (res.getString("permission").equals("Admin")) {
                             session.setAttribute("Droit", "Admin");
                             session.setAttribute("Id", res.getString("id_user"));
-                            response.sendRedirect("Admin.jsp");
+                            response.sendRedirect("admin.jsp");
                         }
                         else if (res.getString("permission").equals("User")) {
                             session.setAttribute("Droit", "User");
