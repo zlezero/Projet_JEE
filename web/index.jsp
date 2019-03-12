@@ -15,7 +15,8 @@
     <body>
         
         <%
-        
+            boolean erreur = false;
+            
             if (request.getParameter("id") != null && request.getParameter("pwd") != null) {
                 
                 Connection conn=null;
@@ -53,9 +54,11 @@
                         else if (res.getString("permission").equals("User")) {
                             session.setAttribute("Droit", "User");
                             session.setAttribute("Id", res.getString("id_user"));
-                            response.sendRedirect("User.jsp");
+                            response.sendRedirect("Jeu.jsp");
                         }
                     }
+                    
+                    erreur = true;
                     
                 } catch(Exception e) {out.print("Erreur lors de la connexion : " + e); }
 
@@ -64,10 +67,17 @@
             
         %>
         
+       
+        
         <div class="row mt-2">
           <div class="col-md-3"></div>
           <div class="col-md-6">
             <h1>Se connecter</h1>
+            <h3>Thomas Vathonne - Raphael Hardy</h3>
+            <% if (erreur == true) { 
+                out.print("ERREUR LORS DE LA CONNEXION !");              
+              }
+            %>
             <hr>
           </div>
         </div>
