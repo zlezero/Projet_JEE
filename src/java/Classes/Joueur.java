@@ -23,11 +23,18 @@ public class Joueur {
         else {
             listeParties = new Partie[nbrParties];
         }
-        
+            
     }
     
-    public Partie getPartieCourante() {
-        return listeParties[getNbrParties()];
+    public void jouer() {
+        for (int i = 0; i != listeParties.length; i++) {
+            listeParties[i] = new Partie();
+            listeParties[i].Jouer();
+        }
+    }
+    
+    public Partie getPartie(int i) {
+        return listeParties[i];
     }
     
     public int getNbrParties() {      

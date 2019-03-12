@@ -22,13 +22,15 @@
         try {
             if (Integer.valueOf(request.getParameter("nbrParties")) >= 5 && Integer.valueOf(request.getParameter("nbrParties")) <= 10) {   
                 
-                Joueur joueur = new Joueur(0, 10);
-                
-                
-                
+                Joueur joueur = new Joueur(0, Integer.valueOf(request.getParameter("nbrParties")));
+                joueur.jouer();                    
+
+                for (int i = 0; i!= joueur.getNbrParties(); i++) {
+                    out.println("Partie " + i + " : " + joueur.getPartie(i).getNbrCoups() + "</br>");
+                }
                 
             } else { response.sendRedirect("User.jsp?erreur"); }
-        } catch (Exception e) {response.sendRedirect("User.jsp?erreur"); }  
+       } catch (Exception e) {response.sendRedirect("User.jsp?erreur"); }  
         
     } else { response.sendRedirect("User.jsp?erreur"); }
     

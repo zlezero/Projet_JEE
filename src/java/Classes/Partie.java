@@ -19,15 +19,61 @@ public class Partie {
     public void Jouer() {
         
         Random r = new Random();
-        int lanceDe = r.nextInt(6);
+        int lanceDe;
         
-        if (lanceDe % 2 == 0) {
+        while (sommetCourant != Sommets.C) {
+            
+            lanceDe = r.nextInt(6);
+        
+            if (lanceDe % 2 == 0) {
+                deplacement(Deplacement.HORIZONTAL);
+            }
+            else {
+                deplacement(Deplacement.VERTICAL);
+            }
+            
+            nbrCoups++;
             
         }
         
     }
     
-    private void Deplacement() {
+    private void deplacement(Deplacement deplacement) {
+        
+        if (deplacement == Deplacement.HORIZONTAL) { //Deplacement horizontal
+            
+            switch (sommetCourant) {
+                case A:
+                    sommetCourant = Sommets.B;
+                    break;
+                case B:
+                    sommetCourant = Sommets.A;
+                    break;
+                case C: 
+                    break;
+                case D:
+                    sommetCourant = Sommets.C;
+                    break;
+            }
+            
+        }
+        else { //Déplacement vertical
+            
+            switch (sommetCourant) {
+                case A:
+                    sommetCourant = Sommets.D;
+                    break;
+                case B:
+                    sommetCourant = Sommets.C;
+                    break;
+                case C: 
+                    break;
+                case D:
+                    sommetCourant = Sommets.A;
+                    break;
+            }
+            
+        }
         
     }
     
