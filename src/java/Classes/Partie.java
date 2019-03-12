@@ -21,7 +21,13 @@ public class Partie {
         Random r = new Random();
         int lanceDe = r.nextInt(6);
         
+        if (lanceDe % 2 == 0) {
+            
+        }
         
+    }
+    
+    private void Deplacement() {
         
     }
     
