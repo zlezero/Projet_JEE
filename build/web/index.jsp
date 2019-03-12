@@ -54,7 +54,7 @@
                         else if (res.getString("permission").equals("User")) {
                             session.setAttribute("Droit", "User");
                             session.setAttribute("Id", res.getString("id_user"));
-                            response.sendRedirect("Jeu.jsp");
+                            response.sendRedirect("User.jsp");
                         }
                     }
                     
