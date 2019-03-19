@@ -39,7 +39,7 @@
                     String login = request.getParameter("id");
                     String  pwd = request.getParameter("pwd");
                     
-                   String sel="SELECT id_user, permission from users WHERE name = ? AND password = ?";
+                    String sel="SELECT id_user, permission from users WHERE name = ? AND password = ?";
                     PreparedStatement st = conn.prepareStatement(sel);
                     st.setString(1, login);
                     st.setString(2, pwd);
@@ -74,6 +74,8 @@
           <div class="col-md-6">
             <h1>Se connecter</h1>
             <h3>Thomas Vathonne - Raphael Hardy</h3>
+            <hr>
+
             <% if (erreur == true) { 
                 out.print("<div class=\"form-control-feedback alert alert-danger alert-dismissible fade show\" role=\"alert\">" + 
                         "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
@@ -81,15 +83,11 @@
                         + "</button>" +
                         "<span class=\"text-danger align-middle\">" +
                         "<i class=\"fa fa-close\"></i><strong> Erreur :</strong> Les identifiants sont incorrects ou le formulaire est invalide" +
-                        "</span>");              
-              }
+                        "</span></div>");              
+               }
             %>
 
-        
-
-
         </div> 
-            <hr>
           </div>
         </div>
 

@@ -67,4 +67,8 @@ public class Joueur {
         return nbrParties;
     }
     
+    public int getIdJoueur() {
+        return idJoueur;
+    }
+    
 }

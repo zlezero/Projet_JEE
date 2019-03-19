@@ -36,6 +36,7 @@
     
     if (session.getAttribute("Droit") == null || !session.getAttribute("Droit").equals("User")) {
         response.sendRedirect("index.jsp");
+        return;
     }
     
     if (request.getParameter("nbrParties") != null) {
@@ -43,22 +44,23 @@
        try {
             if (Integer.valueOf(request.getParameter("nbrParties")) >= 5 && Integer.valueOf(request.getParameter("nbrParties")) <= 10) {   
                 
-                joueur = new Joueur(0, Integer.valueOf(request.getParameter("nbrParties")));
+                joueur = new Joueur(1, Integer.valueOf(request.getParameter("nbrParties")));
                 joueur.jouer();
                 
-                String ins = "INSERT INTO parties(id_user, nb_parties, nb_coups) VALUES (?,?,?)";   
-                PreparedStatement ps = conn.prepareStatement(ins);
+                String ins = "INSERT INTO parties(id_user, nb_coups) VALUES (?,?)";   
+                PreparedStatement ps;
                 
-                ps.setInt(1, 1);
-                ps.setInt(2, joueur.getNbrParties());
-                ps.setInt(3, joueur.getNbrCoupTotal());
-                
-                ps.executeUpdate();
-                
-            } else { response.sendRedirect("User.jsp?erreur"); }
-       } catch (Exception e) {response.sendRedirect("User.jsp?erreur");}   
+                for (int i = 0; i!= joueur.getNbrParties(); i++) {  
+                    ps = conn.prepareStatement(ins);
+                    ps.setInt(1, joueur.getIdJoueur());
+                    ps.setInt(2, joueur.getPartie(i).getNbrCoups());
+                    ps.executeUpdate();
+                }
+                        
+            } else { response.sendRedirect("User.jsp?erreur"); return; }
+       } catch (Exception e) {response.sendRedirect("User.jsp?erreur"); return; }   
         
-    } else { response.sendRedirect("User.jsp?erreur"); }
+    } else { response.sendRedirect("User.jsp?erreur"); return; }
     
     
     
@@ -95,6 +97,7 @@
         
         out.print("<p>Il y a eu " + joueur.getNbrPartiesSup20Coups() + " parties qui se sont jouées en plus de 20 coups.</p>");
         out.print("<p>La moyenne est de " + ( (double)((double)joueur.getNbrCoupTotal() / (double)joueur.getNbrParties()) ) + " coups par parties.</p>");
+        
         %>
         
         <a href="logout.jsp" class="btn btn-danger">Se déconnecter</a>

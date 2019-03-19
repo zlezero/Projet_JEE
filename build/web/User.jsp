@@ -28,9 +28,19 @@
                 <div class="col-md-6">
                     <h1>Options de la partie</h1>
                     <hr>
+                    <% if (request.getParameter("erreur") != null) { 
+                        out.print("<div class=\"form-control-feedback alert alert-danger alert-dismissible fade show\" role=\"alert\">" + 
+                        "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+                        "<span aria-hidden=\"true\">&times;</span>"
+                        + "</button>" +
+                        "<span class=\"text-danger align-middle\">" +
+                        "<i class=\"fa fa-close\"></i><strong> Erreur :</strong> Le nombre de parties est invalide ou une erreur est survenue" +
+                        "</span></div>");              
+                        }
+                    %>
                 </div>
             </div>
-            
+
             <div class="row mt-2">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
