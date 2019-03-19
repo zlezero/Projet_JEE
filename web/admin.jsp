@@ -38,32 +38,34 @@
             </thead>
             <tbody>
         <%
-            double avg_coups = 0.0;
-            double avg_parties = 0.0;
-            int i = 0;
-            int id [] = new int [100000];
-            String name [] = new String [100000];
-            int nb_coups [] = new int [100000];
-            int nb_parties [] = new int [100000];
-             Connection conn=null;
+                double avg_coups = 0.0;
+                double avg_parties = 0.0;
+                int i = 0;
+                int id [] = new int [100000];
+                String name [] = new String [100000];
+                int nb_coups [] = new int [100000];
+                int nb_parties [] = new int [100000];
+
+                Connection conn=null;
                 Statement stmt=null;
-                    try{
-                        Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    }catch(Exception e){out.print(e);}
 
-                    try{
-                        String jdbc="jdbc:mysql://localhost:3306/g8";
-                        String root = "g8";
-                        String mdp = "g8";
-                        conn=DriverManager.getConnection(jdbc,root,mdp);
-                        stmt=conn.createStatement();
-                    }catch(Exception e){out.print(e);}
+                try {             
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                } catch(Exception e){out.print(e);}
 
-                    String select_users = "SELECT u.id_user, u.name, p.nb_parties, p.nb_coups FROM users u, parties p WHERE u.id_user = p.id_user;";
-              
-                    Statement st = conn.createStatement();
-                   
-                    ResultSet rs = st.executeQuery(select_users);
+                try {
+                    String jdbc="jdbc:mysql://localhost:3306/g8";
+                    String root = "g8";
+                    String mdp = "g8";
+                    conn = DriverManager.getConnection(jdbc,root,mdp);
+                    stmt = conn.createStatement();
+                } catch(Exception e){out.print(e);}
+
+                String select_users = "SELECT u.id_user, u.name, p.nb_parties, p.nb_coups FROM users u, parties p WHERE u.id_user = p.id_user;";
+
+                Statement st = conn.createStatement();
+
+                ResultSet rs = st.executeQuery(select_users);
                                      
                     
                     while (rs.next())
@@ -90,15 +92,15 @@
                     }
                     double sum_coups = avg_coups;
                     avg_coups = avg_coups/ avg_parties;
-                    double ecarttype = 0.0;
+                    double ecartType = 0.0;
                     for (int j = 0; j < i; j++) {
-                        ecarttype += Math.pow(Math.abs(avg_coups - nb_coups[j]),2);
+                        ecartType += Math.pow(Math.abs(avg_coups - nb_coups[j]),2);
                         
                         
                     }
                     
-                    ecarttype = ecarttype / sum_coups;
-                    ecarttype = Math.sqrt(ecarttype);
+                    ecartType = ecartType / sum_coups;
+                    ecartType = Math.sqrt(ecartType);
                     
 
                     st.close();
@@ -116,7 +118,7 @@
                     }
                     if(request.getParameter("ecarttype") != null) {
                         DecimalFormat df = new DecimalFormat("###.###");
-                        out.println(df.format(ecarttype));
+                        out.println(df.format(ecartType));
                     }
             
             %>

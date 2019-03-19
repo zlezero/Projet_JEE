@@ -41,4 +41,30 @@ public class Joueur {
         return listeParties.length;      
     }
     
+    public int getNbrCoupTotal() {
+        
+        int nbrCoups = 0;
+        
+        for (int i = 0; i != listeParties.length; i++) {
+            if (listeParties[i].getNbrCoups() < 20) {
+                nbrCoups += listeParties[i].getNbrCoups();
+            }
+        }
+        
+        return nbrCoups;
+    }
+    
+    public int getNbrPartiesSup20Coups() {
+        
+        int nbrParties = 0;
+        
+        for (int i = 0; i != listeParties.length; i++) {
+            if (listeParties[i].getNbrCoups() > 20) {
+                nbrParties += 1;
+            }
+        }
+        
+        return nbrParties;
+    }
+    
 }
