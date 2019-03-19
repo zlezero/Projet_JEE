@@ -24,7 +24,7 @@
                 
                 Joueur joueur = new Joueur(0, Integer.valueOf(request.getParameter("nbrParties")));
                 joueur.jouer();                    
-
+                
                 for (int i = 0; i!= joueur.getNbrParties(); i++) {
                     out.println("Partie " + i + " : " + joueur.getPartie(i).getNbrCoups() + "</br>");
                 }

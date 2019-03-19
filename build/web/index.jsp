@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Exercice16
+    Document   : index
     Created on : 26 févr. 2019, 09:58:58
     Author     : tvathonn
 --%>
@@ -19,8 +19,8 @@
             
             if (request.getParameter("id") != null && request.getParameter("pwd") != null) {
                 
-                Connection conn=null;
-                Statement stmt=null;
+                Connection conn = null;
+                Statement stmt = null;
                 
                 try {
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -67,7 +67,7 @@
             
         %>
         
-       
+        
         
         <div class="row mt-2">
           <div class="col-md-3"></div>
@@ -75,9 +75,20 @@
             <h1>Se connecter</h1>
             <h3>Thomas Vathonne - Raphael Hardy</h3>
             <% if (erreur == true) { 
-                out.print("ERREUR LORS DE LA CONNEXION !");              
+                out.print("<div class=\"form-control-feedback alert alert-danger alert-dismissible fade show\" role=\"alert\">" + 
+                        "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+                        "<span aria-hidden=\"true\">&times;</span>"
+                        + "</button>" +
+                        "<span class=\"text-danger align-middle\">" +
+                        "<i class=\"fa fa-close\"></i><strong> Erreur :</strong> Les identifiants sont incorrects ou le formulaire est invalide" +
+                        "</span>");              
               }
             %>
+
+        
+
+
+        </div> 
             <hr>
           </div>
         </div>
