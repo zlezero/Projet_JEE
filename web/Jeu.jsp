@@ -100,6 +100,14 @@
         
         %>
         
+        <form action="Jeu.jsp">
+            <input id="nbrParties" name="nbrParties" value="<% out.print(joueur.getNbrParties()); %>" hidden>
+            <button type="submit" class="btn btn-primary">Rejouer</button>
+        </form>
+        
+        <br/>
+            
+        <a href="User.jsp" class="btn btn-primary">Choisir un autre nombre de parties</a>
         <a href="logout.jsp" class="btn btn-danger">Se déconnecter</a>
     </body>
 </html>
